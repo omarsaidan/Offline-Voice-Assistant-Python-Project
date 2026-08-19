@@ -84,10 +84,11 @@ def take_screenshot() -> None:
     image = Image.open(filepath)
     image.show()
 
+waiting_to_close_window = False
 def close_active_window() -> None:
-    time.sleep(0.3)
-    pyautogui.hotkey("alt", "f4")
-    speak("Closed the active window.")
+    global waiting_to_close_window
+    waiting_to_close_window = True
+    speak("Do you want to close the current active window?")
     
 def maximize_window() -> None:
     pyautogui.hotkey("win", "up")
@@ -188,8 +189,29 @@ USER_AWARE_COMMANDS = {
 
 
 def handle_command(text: str, username: str = "") -> bool:
-    global search_query
+    
+    global search_query, waiting_to_close_window
     text = text.strip().lower()
+    
+    if waiting_to_close_window:
+        waiting_to_close_window = False
+
+        answer = re.sub(r"[^a-z\s]", "", text.lower()).strip()
+
+        if re.search(r"\b(yes|yeah|yep|confirm)\b", answer):
+            time.sleep(0.3)
+            pyautogui.hotkey("alt", "f4")
+            speak("Closed the active window.")
+
+        elif re.search(r"\b(no|nope|cancel)\b", answer):
+            speak("Okay, I will not close the window.")
+
+        else:
+            print(f"Assistant: Confirmation heard as: {text!r}")
+            speak("I did not understand your answer. The window was not closed.")
+
+        return True
+
     search_query = text
 
     try:
