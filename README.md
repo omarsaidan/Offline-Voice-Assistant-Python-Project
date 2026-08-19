@@ -1,4 +1,4 @@
-# Voice Assistant
+# Intelligent Offline Voice-Controlled Desktop Automation Assistant
 
 A Windows desktop voice assistant built in Python. It listens for a wake word, transcribes speech locally using [faster-whisper](https://github.com/SYSTRAN/faster-whisper), and executes system commands — opening apps, taking screenshots, searching the web, typing dictated text, and more. User accounts are protected with salted, hashed passwords stored in a local SQLite database.
 
