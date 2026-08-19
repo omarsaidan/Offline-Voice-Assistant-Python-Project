@@ -126,4 +126,4 @@ The repository includes a pre-configured `main.spec` file with all the hidden im
 
 ## License
 
-*(Add a license — MIT is a common choice for personal projects. Add a `LICENSE` file to the repo root and reference it here.)*
+MIT License
