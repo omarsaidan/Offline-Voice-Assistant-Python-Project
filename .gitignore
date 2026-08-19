@@ -1,0 +1,40 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- PyInstaller build output ----
+# main.spec is kept (it's hand-tuned), but build artifacts are not.
+build/
+dist/
+*.exe
+*.manifest
+
+# ---- Whisper model files (large, downloaded at runtime/build) ----
+whisper_model/
+
+# ---- Project-specific runtime data ----
+screenshots/
+*.db
+*.sqlite3
+*.log
+
+# ---- Environment / secrets ----
+.env
+*.env
+
+# ---- Editor / IDE ----
+.vscode/
+.idea/
+*.swp
+
+# ---- OS-generated files ----
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+# Only needed if you're building the standalone .exe yourself.
+# Install with: pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+
+pyinstaller==6.11.1
+comtypes==1.4.10   # required by pyttsx3's sapi5 driver on Windows
