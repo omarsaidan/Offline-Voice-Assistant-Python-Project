@@ -104,7 +104,7 @@ def search_web() -> None:
     query = ""
     for trigger in SEARCH_TRIGGERS:
         if search_query.startswith(trigger):
-            query = search_query[len(trigger):].strip()
+            query = search_query[len(trigger):].lstrip(" \t,.:;!?-")
             break
 
     if not query:
@@ -121,7 +121,7 @@ def copy_text() -> None:
     text_to_copy = ""
     for trigger in COPY_TRIGGERS:
         if search_query.startswith(trigger):
-            text_to_copy = search_query[len(trigger):].strip()
+            text_to_copy = search_query[len(trigger):].lstrip(" \t,.:;!?-")
             break
 
     if not text_to_copy:
@@ -143,7 +143,7 @@ def type_text() -> None:
     text_to_type = ""
     for trigger in TYPE_TRIGGERS:
         if search_query.startswith(trigger):
-            text_to_type = search_query[len(trigger):].strip()
+            text_to_type = search_query[len(trigger):].lstrip(" \t,.:;!?-")
             break
 
     if not text_to_type:
@@ -216,7 +216,7 @@ def handle_command(text: str, username: str = "") -> bool:
 
     try:
         for keyword, action in ARG_COMMANDS:
-            if text == keyword or text.startswith(keyword + " "):
+            if re.match(rf"^{re.escape(keyword)}(?:$|[\s,.:;!?-]+)", text):
                 action()
                 return True
 

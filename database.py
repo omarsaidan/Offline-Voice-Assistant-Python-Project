@@ -3,10 +3,7 @@ import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
 
-# ``__file__`` points inside PyInstaller's unpacked bundle.  In a --onefile
-# build that directory is temporary, and in an --onedir build it should be
-# treated as application files rather than user-writable data.  Keep accounts
-# in the user's local application-data directory instead.
+
 APP_DATA_DIR = os.path.join(
     os.environ.get("LOCALAPPDATA", os.path.expanduser("~")),
     "VoiceAssistant",
